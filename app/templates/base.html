@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    <title>
+        {% if title %}
+            This is {{ title }}
+        {% else %}
+            The Web Page
+        {% endif %}
+    </title>
+</head>
+<body>
+
+
+    <nav class="navbar is-black is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand ">
+            <a class="navbar-item "  href="{{ url_for('index') }}">
+                <p class="title is-3 brand ml-4">Tech_Thoqht</p>
+            </a>
+        
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true" class='bs'></span>
+                <span aria-hidden="true" class='bs'></span>
+                <span aria-hidden="true" class='bs'></span>
+            </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-end">
+                
+                
+                
+                <div class="navbar-item mr-6">
+                    <div class="buttons">
+                        {% if current_user.is_authenticated %}
+                        <a class="button is-danger" href="{{ url_for('logout') }}">
+                            Logout
+                        </a>
+                        {% else %}
+                        <a class="button is-success" href="{{ url_for('login') }}">
+                            Login
+                        </a>
+                        <a class="button is-success" href="{{ url_for('signup') }}">
+                            SignUp
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock content %}
+
+
+    <script src="{{ url_for('static', filename='apps.js') }}"></script>
+</body>
+</html>
